@@ -1,0 +1,65 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// drop down return part
+
+        {/* <div className="form-group">
+          <label htmlFor="country">Country:</label>
+          <select
+            id="country"
+            name="country"
+            // value={getCountry}
+            onChange={(e) => {             
+              handleCountry(e)
+            }}
+          ><option>Select Country</option>
+            {country.map(items=> <option key={items} value={getCountry}>{items}</option>)}
+          </select>
+        </div> */}
+
+
+        {/* <div className="form-group">
+          <label htmlFor="country">State:</label>
+          <select
+            id="state"
+            name="state"
+            // value={getCountry}
+            onChange={(e) => {             
+              handleState(e)
+            }}
+          ><option>Select State</option>
+            {getState.map(items=> <option key={items} value={selectedState}>{items}</option>)}
+          </select>
+        </div> */}
+
+        
+
+        {/* <div className="form-group">
+          <label htmlFor="city">City:</label>
+          <select
+            id="city"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+          >
+            <option value="">Select a city</option>
+            {cities.map((city, index) => (
+              <option key={index} value={city}>
+                {city}
+              </option>
+            ))}
+          </select> 
+        </div>*/}
