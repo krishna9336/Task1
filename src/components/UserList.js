@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteUser, fetchUser, updateUser } from '../actions/userActions'; // Assuming you have fetchUser, deleteUser, and updateUser actions
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import the FontAwesomeIcon component
-import { faEdit, faTrash, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'; // Import the desired icons
-import Axios from 'axios'; // Import Axios
+import { deleteUser, fetchUser, updateUser } from '../actions/userActions'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'; 
+import Axios from 'axios'; 
 import { server } from '../index';
 import toast from 'react-hot-toast';
 
