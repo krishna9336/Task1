@@ -1,5 +1,16 @@
 const initialState = {
-    users: [],
+    users: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      mobile: '',
+      address1: '',
+      address2: '',
+      state: '',
+      city: '',
+      country: '',
+      zipCode: '',
+    },
   };
   
   const userReducer = (state = initialState, action) => {
@@ -7,8 +18,13 @@ const initialState = {
       case 'CREATE_USER':
         return {
           ...state,
-          users: [...state.users, action.payload],
+          users: action.payload,
         };
+          case 'FETCH_USERS_SUCCESS':
+            return {
+              ...state,
+              users: action.payload, // Update users array with fetched data
+            };
       case 'DELETE_USER':
         return {
           ...state,
@@ -18,7 +34,11 @@ const initialState = {
       default:
         return state;
     }
+    
   };
   
   export default userReducer;
   
+
+
+

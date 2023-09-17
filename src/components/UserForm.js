@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { createUser } from '../actions/userActions';
-import Selector from './Selector';
-import { Country, State, City } from 'country-state-city';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from "../actions/userActions";
+import Selector from "./Selector";
+import { Country, State, City } from "country-state-city";
+import { addUser } from "../services/auth.service";
+import toast from "react-hot-toast";
 
 function UserForm() {
   let countryData = Country.getAllCountries();
@@ -10,6 +12,7 @@ function UserForm() {
   const [cityData, setCityData] = useState();
 
   const [country, setCountry] = useState(countryData[0]);
+  const userPayload = useSelector((state) => state.userReducer?.users);
   const [state, setState] = useState();
   const [city, setCity] = useState();
 
@@ -31,39 +34,59 @@ function UserForm() {
 
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    mobile: '',
-    address1: '',
-    address2: '',
-    state: '',
-    city: '',
-    country: '',
-    zipCode: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    mobile: "",
+    address1: "",
+    address2: "",
+    state: "",
+    city: "",
+    country: "",
+    zipCode: "",
   });
 
   const handleChange = (e) => {
+    console.log("state Object=>", JSON.stringify(state));
+    console.log("city Object=>", JSON.stringify(city));
+    console.log("country Object=>", JSON.stringify(country));
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({
+      ...formData,
+      [name]: value,
+      state: state.name,
+      city: city.name,
+      country: country.name,
+    });
+  };
+
+  const submitForm = async () => {
+    console.log("USER DATA SENDING=>", formData);
+    await addUser(formData);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createUser(formData));
+    try {
+      dispatch(createUser(formData));
     // Reset form data here
     setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      mobile: '',
-      address1: '',
-      address2: '',
-      state: '',
-      city: '',
-      country: '',
-      zipCode: '',
+      firstName: "",
+      lastName: "",
+      email: "",
+      mobile: "",
+      address1: "",
+      address2: "",
+      state: "",
+      city: "",
+      country: "",
+      zipCode: "",
     });
+    toast.success(addUser.message);
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+    
   };
 
   return (
@@ -202,7 +225,10 @@ function UserForm() {
 
         <div className="mb-4">
           <button
-            type="submit"
+            // type="submit"
+            onClick={() => {
+              submitForm();
+            }}
             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-500"
           >
             Create User
@@ -213,4 +239,4 @@ function UserForm() {
   );
 }
 
-export default UserForm
+export default UserForm;
