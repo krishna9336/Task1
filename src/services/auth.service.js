@@ -16,7 +16,7 @@ export const addUser = async (userPayload) => {
     };
 
     axios.request(config).then((response) => {
-      console.log(JSON.stringify(response.data));
+      console.log(JSON.stringify(response?.data));
     });
   } catch (err) {
     console.log("Error: ", err);

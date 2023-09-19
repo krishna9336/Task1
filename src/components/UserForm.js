@@ -5,6 +5,7 @@ import Selector from "./Selector";
 import { Country, State, City } from "country-state-city";
 import { addUser } from "../services/auth.service";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 function UserForm() {
   let countryData = Country.getAllCountries();
@@ -62,31 +63,35 @@ function UserForm() {
 
   const submitForm = async () => {
     console.log("USER DATA SENDING=>", formData);
-    await addUser(formData);
+    if(
+      await addUser(formData)){
+        alert("Form Submitted")  
+      }else {
+      alert("Fill the proper details")  
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
       dispatch(createUser(formData));
-    // Reset form data here
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      mobile: "",
-      address1: "",
-      address2: "",
-      state: "",
-      city: "",
-      country: "",
-      zipCode: "",
-    });
-    toast.success(addUser.message);
+      // Reset form data here
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        mobile: "",
+        address1: "",
+        address2: "",
+        state: "",
+        city: "",
+        country: "",
+        zipCode: "",
+      });
+      toast.success(addUser.message);
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error?.response?.data.message);
     }
-    
   };
 
   return (
@@ -232,6 +237,9 @@ function UserForm() {
             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-500"
           >
             Create User
+          </button>
+          <button className="px-4 ml-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-500">
+            <Link to="/">User List</Link>
           </button>
         </div>
       </form>
