@@ -8,13 +8,12 @@ import App from "./App"; // Your main App component
 import "./styles/tailwind.css"; // Import your Tailwind CSS styles
 
 // Create a Redux store with your combined reducers
-const store = createStore(rootReducer);
+const Store = createStore(rootReducer);
 
-export const server = "https://task1-p4c9.onrender.com";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
+  <Provider store={Store}>
     <React.StrictMode>
       <App />
     </React.StrictMode>

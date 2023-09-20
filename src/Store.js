@@ -13,6 +13,6 @@ const combinedReducer = combineReducers({
 const store = createStore(
   combinedReducer, // Use the combined reducer
   applyMiddleware(thunk) // Apply middleware (e.g., redux-thunk for async actions)
-);
+);yyy
 
 export default store;

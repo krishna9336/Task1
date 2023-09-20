@@ -38,3 +38,4 @@ export const deleteUserById = async (userId) => {
     console.log("Error: ", err);
   }
 };
+

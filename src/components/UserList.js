@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import {  useDispatch } from "react-redux";
-import {  updateUser } from "../actions/userActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { deleteUserById } from "../services/user.service";
 import {
@@ -9,13 +7,10 @@ import {
   faCheck,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-import Axios from "axios";
-import { server } from "../index";
 import { getAllUsers } from "../services/user.service";
 import { Link } from "react-router-dom";
 
 function UserList() {
-  const dispatch = useDispatch();
   const [allUsersFromDB, setAllUsersFromDB] = useState([]);
 
  
@@ -28,16 +23,7 @@ function UserList() {
     setEditMode(user.id);
   };
 
-  const handleSave = () => {
-    Axios.put(`${server}/${editedUser.id}`, editedUser)
-      .then(() => {
-        dispatch(updateUser(editedUser));
-        setEditMode(null);
-      })
-      .catch((error) => {
-        console.error("Error updating user:", error);
-      });
-  };
+  
 
   const handleCancelEdit = () => {
     setEditedUser(null);
@@ -95,7 +81,7 @@ function UserList() {
                     <FontAwesomeIcon
                       icon={faCheck}
                       className="text-green-500 hover:text-green-600 cursor-pointer"
-                      onClick={handleSave}
+                      // onClick={handleSave}
                     />
                     <FontAwesomeIcon
                       icon={faTimes}

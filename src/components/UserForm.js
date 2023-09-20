@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "../actions/userActions";
 import Selector from "./Selector";
 import { Country, State, City } from "country-state-city";
-import { addUser } from "../services/auth.service";
+import { addUser,createUser } from "../services/auth.service";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 

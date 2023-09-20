@@ -22,3 +22,9 @@ export const addUser = async (userPayload) => {
     console.log("Error: ", err);
   }
 };
+
+
+export const createUser = (userData) => ({
+  type: "CREATE_USER",
+  payload: userData,
+});
