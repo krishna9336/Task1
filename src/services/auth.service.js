@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const BASEURL = `http://localhost:5000/api`;
+export const BASEURL = `https://task-1-backend-k4om.onrender.com`;
 
 export const addUser = async (userPayload) => {
   console.log("data sending..", userPayload);
